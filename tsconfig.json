@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ES2020",
     "module": "esnext",
     "strict": true,
     "jsx": "preserve",
@@ -27,13 +27,16 @@
     ]
   },
   "include": [
+    "./folder",
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
     "tests/**/*.ts",
-    "tests/**/*.tsx"
+    "tests/**/*.tsx", "src/main.ts"
   ],
   "exclude": [
+    "./folder/**/*.spec.ts",
+    "./folder/someSubFolder",
     "node_modules"
   ]
 }

@@ -1,29 +1,42 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <HeaderComponent></HeaderComponent>
+    <Slider></Slider>
+    <div class="center">
+      <!----<LastArticles></LastArticles>-->
+      <router-view></router-view>
+      <Sidebar></Sidebar>
+      <div class="clearfix"></div>
+    </div>
+    <FooterComponent></FooterComponent>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-import HelloWorld from './components/HelloWorld.vue'
+import { Component, Vue } from 'vue-property-decorator';
+import HelloWorld from './components/HelloWorld.vue';
+import MyComponent from './components/MyComponent.vue';
+import HeaderComponent from './components/HeaderComponent.vue';
+import Slider from './components/Slider.vue';
+import Sidebar from './components/Sidebar.vue';
+import LastArticles from './components/LastArticles.vue';
+import FooterComponent from './components/FooterComponent.vue';
 
 @Component({
   components: {
-    HelloWorld
+    HelloWorld,
+    MyComponent,
+    HeaderComponent,
+    Slider,
+    Sidebar,
+    LastArticles,
+    FooterComponent
   }
 })
 export default class App extends Vue {}
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
+@import './assets/css/styles.css';
 </style>
