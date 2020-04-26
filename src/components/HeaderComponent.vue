@@ -9,10 +9,10 @@
       </div>
       <nav id="menu">
         <ul>
-          <li><a href="index.html">Inicio</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="formulario.html">Formulario</a></li>
-          <li><a href="#">Page 1</a></li>
+          <li><router-link to="/last-articles">Last Articles</router-link></li>
+          <li><router-link to="/blog">Blog</router-link></li>
+          <li><router-link to="/page">Page</router-link></li>
+          <li><router-link to="/form">Form</router-link></li>
           <li><a href="#">Page 2</a></li>
         </ul>
       </nav>
