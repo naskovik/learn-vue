@@ -1,13 +1,11 @@
-<template>
-    <div id="mycomp">
+id as div as template= 'mycomp' >
+        (This as h1 as hr) is my component < /h1>
+        < h2 > {{ subtitle }}(/h2> as )
         <hr>
-        <h1>This is my component</h1>
-        <h2> {{ subtitle }}</h2>
-        <hr>
-    </div>
-</template>
+    (/div> as )
+< /template>
 
-<script>
+< script >
 export default {
   name: 'MyComponent',
   data () {
@@ -16,4 +14,4 @@ export default {
     };
   }
 };
-</script>
+/script> as

@@ -9,7 +9,10 @@
         "object-literal-sort-keys": false,
         "arrow-parens": false,
         "trailing-comma": false,
-        "space-before-function-paren": false
+        "space-before-function-paren": false,
+        "quotemark": [true, "single"],
+        "semicolon": false,
+        "no-console": false
     },
     "rulesDirectory": []
 }
