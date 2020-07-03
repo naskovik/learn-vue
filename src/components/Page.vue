@@ -1,6 +1,6 @@
 <template>
   <div class="general">
-    <Slider></Slider>
+    <Slider text="This is the fun page" showBtn="true"></Slider>
     <div class="center">
       <section id="content">
         <h2 class="subheader">{{ this.name }}</h2>

@@ -12,7 +12,7 @@
           <li><router-link active-class="active" to="/last-articles">Last Articles</router-link></li>
           <li><router-link active-class="active" to="/blog">Blog</router-link></li>
           <li><router-link active-class="active" to="/page">Page</router-link></li>
-          <li><router-link active-class="active" to="/form">Form</router-link></li>
+          <li><router-link active-class="active" to="/movies">Movies</router-link></li>
         </ul>
       </nav>
     </div>

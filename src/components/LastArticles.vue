@@ -1,6 +1,6 @@
 <template>
   <div class="general">
-    <Slider></Slider>
+    <Slider text="Learning VueJS" showBtn="true"></Slider>
     <div class="center">
       <section id="content">
         <h2 class="subheader">Last articles</h2>

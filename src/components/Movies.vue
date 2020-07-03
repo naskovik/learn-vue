@@ -3,9 +3,14 @@
     <div class="center">
       <section id="content">
         <h2 class="subheader">Movies</h2>
+
+        <div class="about" v-if="aboutMe"><p v-html="aboutMe"></p></div>
+
+        <div class="favourite" v-if="favourite"><h3>Fav movie: {{ favourite.title }}</h3></div>
+
         <div id="articles">
-          <div v-for="movie in movies" :key="movie.title">
-            <Movie :movie="movie"></Movie>
+          <div v-for="movie in upperCaseMovies" :key="movie.title">
+            <Movie @favourite="markedFav(movie)" :movie="movie"></Movie>
           </div>
         </div>
       </section>
@@ -24,8 +29,34 @@ export default {
     Movie,
     Sidebar
   },
+  methods: {
+    markedFav(movie) {
+      console.log(movie);
+      this.favourite = movie;
+    }
+  },
+  computed: {
+    upperCaseMovies() {
+      const moviesMod = this.movies;
+      moviesMod.forEach(movie => {
+        movie.title = movie.title.toUpperCase();
+      });
+
+      return moviesMod;
+    },
+    aboutMe() {
+      return `${this.myName}  ${this.surname}:<br/>${this.profession} `;
+    }
+  },
+  filters: {
+    mayus(value) { return value.toUpperCase(); }
+  },
   data() {
     return {
+      myName: 'Nazar',
+      surname: 'Skoreyko',
+      profession: 'Junior programmer',
+      favourite: null,
       movies: [
         {
           title: 'The dark Knight',

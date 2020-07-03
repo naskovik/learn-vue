@@ -7,6 +7,7 @@
     <h2>{{ movie.title }}</h2>
     <span class="date yeargreen">{{ movie.year }}</span>
     <a href="#">Read more</a>
+    <button @click="markAsFav(movie)">Fav</button>
 
     <div class="clearfix"></div>
   </article>
@@ -15,6 +16,12 @@
 <script>
 export default {
   name: 'Movie',
-  props: ['movie']
+  props: ['movie'],
+  methods: {
+    markAsFav(movie) {
+      this.$emit('favourite', movie);
+      console.log(movie);
+    }
+  }
 }
 </script>

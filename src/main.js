@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import App from './App.vue';
 import VueRouter from 'vue-router';
+import Vuelidate from 'vuelidate';
 import LastArticles from './components/LastArticles.vue';
 import MyComponent from './components/MyComponent.vue';
 import Blog from './components/Blog.vue';
@@ -21,6 +22,7 @@ const router = new VueRouter({
 });
 new Vue({
   router,
+  Vuelidate,
   render: h => h(App)
 }).$mount('#app');
 // # sourceMappingURL=main.js.map

@@ -1,6 +1,6 @@
 <template>
   <div class="general">
-    <Slider></Slider>
+    <Slider text="Blog"></Slider>
     <div class="center">
       <section id="content">
         <h2 class="subheader">Blog</h2>
@@ -13,10 +13,12 @@
 
 <script>
 import Sidebar from './Sidebar.vue';
+import Slider from './Slider.vue';
 export default {
   name: 'Blog',
   components: {
-    Sidebar
+    Sidebar,
+    Slider
   }
 };
 </script>
