@@ -23,7 +23,7 @@ exports.createBook = function(req, res) {
     validTitle = !validator.isEmpty(params.title);
     validAuthor = !validator.isEmpty(params.author);
   } catch (err) {
-    return res.status(400).json(params);
+    return res.status(400).send({ message: 'Invalid paramters for new book' });
   }
 
   const valid = validTitle && validAuthor;
@@ -83,10 +83,10 @@ exports.deleteBook = function(req, res) {
   });
 }
 
-exports.upload = function(req, res) {
+exports.uploadImage = function(req, res) {
   let fileName = 'Image not loaded';
 
-  if (!req.files) { res.send({ message: fileName }); }
+  if (!req.files) { return res.send({ message: fileName }); }
 
   // Get separated file name and extension
   const filePath = req.files.file0.path;
@@ -99,25 +99,49 @@ exports.upload = function(req, res) {
 
   if (!(IMAGE_FORMAT.includes(fileExtention))) {
     fs.unlink(filePath, (err) => { if (err) return res.status(500).send(err) });
-    res.status(400).send({ message: 'Invalid file format' });
+    return res.status(400).send({ message: 'Invalid file format' });
   } else {
     // update book with the received image
     const bookId = req.params.bookId;
 
-    Book.findByIdAndUpdate({ _id: bookId }, { image: fileName }, { new: true }, (err, bookUpdated) => {
+    Book.findOneAndUpdate({ _id: bookId }, { image: fileName }, { new: true }, (err, bookUpdated) => {
       if (err) return res.status(500).send(err);
       else if (!bookUpdated) return res.status(500).send({ message: 'An error occurred while updating information' });
-      else return res.status(200).send(bookUpdated);
+      else {
+        return res.status(200).send({
+          bookUpdated,
+          file: req.files,
+          split: fileSplit,
+          extention: fileExtention
+        });
+      }
     });
   }
-
-  return res.send({
-    file: req.files,
-    split: fileSplit,
-    extention: fileExtention
-  });
 }
 
 exports.getImage = function(req, res) {
-  // TODO
+  const image = req.params.image;
+  const imgPath = `./upload/books/${image}`;
+
+  fs.stat(imgPath, (err, stat) => {
+    if (err) return res.status(404).send({ message: 'Image not found' });
+    else return res.sendFile(path.resolve(imgPath));
+  });
+}
+
+exports.searchBook = function(req, res) {
+  const searchString = req.params.search;
+
+  Book.find({
+    $or: [
+      { title: { $regex: searchString, $options: 'i' } },
+      { content: { $regex: searchString, $options: 'i' } }
+    ]
+  })
+    .sort([['date', 'descending']])
+    .exec((err, books) => {
+      if (err) return res.status(500).send({ error: err });
+      else if (!books) return res.status(404).send({ message: 'No books found' });
+      else return res.status(200).send({ message: 'success', books: books });
+    });
 }

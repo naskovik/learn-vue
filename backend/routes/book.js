@@ -12,6 +12,9 @@ router.get('/books/:bookId', bookCtrl.readBook);
 router.post('/books/:bookId', bookCtrl.updateBook);
 router.delete('/books/:bookId', bookCtrl.deleteBook);
 
-router.post('/upload-image/:bookId', mwUpload, bookCtrl.upload);
+router.post('/upload-image/:bookId', mwUpload, bookCtrl.uploadImage);
+router.get('/get-image/:image', bookCtrl.getImage);
+
+router.get('/search/:search', bookCtrl.searchBook);
 
 module.exports = router;
